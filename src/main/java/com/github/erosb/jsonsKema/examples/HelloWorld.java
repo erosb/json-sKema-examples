@@ -1,11 +1,13 @@
 package com.github.erosb.jsonsKema.examples;
 
+import com.github.erosb.jsonsKema.FormatValidationPolicy;
 import com.github.erosb.jsonsKema.JsonParser;
 import com.github.erosb.jsonsKema.JsonValue;
 import com.github.erosb.jsonsKema.Schema;
 import com.github.erosb.jsonsKema.SchemaLoader;
 import com.github.erosb.jsonsKema.ValidationFailure;
 import com.github.erosb.jsonsKema.Validator;
+import com.github.erosb.jsonsKema.ValidatorConfig;
 
 public class HelloWorld {
 
@@ -13,6 +15,7 @@ public class HelloWorld {
         // parse the schema JSON as string
         JsonValue schemaJson = new JsonParser("""
         {
+            "$schema": "https://json-schema.org/draft/2020-12/schema",
             "type": "object",
             "properties": {
                 "age": {
@@ -21,6 +24,10 @@ public class HelloWorld {
                 },
                 "name": {
                     "type": "string"
+                },
+                "email": {
+                    "type": "string",
+                    "format": "email"
                 }
             }
         }
@@ -29,13 +36,14 @@ public class HelloWorld {
         Schema schema = new SchemaLoader(schemaJson).load();
 
         // create a validator instance for each validation (one-time use object)
-        Validator validator = Validator.forSchema(schema);
+        Validator validator = Validator.create(schema, new ValidatorConfig(FormatValidationPolicy.ALWAYS));
 
         // parse the input instance to validate against the schema
         JsonValue instance = new JsonParser("""
         {
             "age": -5,
-            "name": null
+            "name": null,
+            "email": "invalid"
         }
         """).parse();
 
