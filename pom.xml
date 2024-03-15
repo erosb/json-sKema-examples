@@ -20,7 +20,7 @@
         <dependency>
             <groupId>com.github.erosb</groupId>
             <artifactId>json-sKema</artifactId>
-            <version>0.13.0</version>
+            <version>0.0.0-develop</version>
         </dependency>
     </dependencies>
 
