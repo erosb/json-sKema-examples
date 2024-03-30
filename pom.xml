@@ -10,8 +10,8 @@
     <packaging>jar</packaging>
 
     <properties>
-        <maven.compiler.source>17</maven.compiler.source>
-        <maven.compiler.target>17</maven.compiler.target>
+        <maven.compiler.source>21</maven.compiler.source>
+        <maven.compiler.target>21</maven.compiler.target>
 
     </properties>
 
@@ -20,7 +20,7 @@
         <dependency>
             <groupId>com.github.erosb</groupId>
             <artifactId>json-sKema</artifactId>
-            <version>0.14.0</version>
+            <version>0.0.0-develop</version>
         </dependency>
     </dependencies>
 
